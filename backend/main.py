@@ -1,8 +1,6 @@
 import json
 import math
 import datetime
-import pickle
-import pandas as pd
 
 def calculator(operation, number1, number2):
     if operation == 'add':
@@ -78,25 +76,25 @@ def age_calculator(birthdate):
     
     return age, birth_day_of_week
 
+def predict_price(square_feet, bedrooms, bathrooms, location):
+    locations = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia', 'San Antonio', 'San Diego']
+    location_flags = [0] * len(locations)
+    if location in locations:
+        location_flags[locations.index(location)] = 1
+    else:
+        print(f'Error: Invalid location - {location}')
+        return None
+    modified_values = [square_feet, bedrooms, bathrooms] + location_flags
+    coeff = [-6.37542592, 1222.21821, 4252.9471, 4501.18216, 18241.0398, 3212.25088, 4652.57369, 12466.7552, -3875.22794]
+    weighted_values = [modified_values[i] * coeff[i] for i in range(9)]
+    predicted_price = sum(weighted_values) + 547035.8941609525
+    return int(predicted_price)
+
+
 def home_price_predictor(location, square_feet, bedrooms, bathrooms):
-# Load the model from the pickle file
-    with open('model.pkl', 'rb') as file:
-        loaded_model = pickle.load(file)
-    # List of sample locations
-    locations = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix',
-             'Philadelphia', 'San Antonio', 'San Diego']
-    def predict_price(square_feet, bedrooms, bathrooms, location):
-        location_flags = [0] * len(locations)
-        if location in locations:
-            location_flags[locations.index(location)] = 1
-        else:
-            return None
-        predicted_price = loaded_model.predict([[square_feet+bedrooms+bathrooms]+location_flags])
-        predictions = predicted_price.astype(int)
-        return predictions[0]
     predicted_price = predict_price(square_feet, bedrooms, bathrooms, location)
     if predicted_price is not None:
-        return result
+        return predicted_price
     else:
         raise ValueError('Error: Invalid location')
 
@@ -104,7 +102,13 @@ def lambda_handler(event, context):
     query_parameters = event.get('queryStringParameters', {})
     category = query_parameters.get('category')
     operation = query_parameters.get('operation')
-
+    # Handle CORS
+    headers = {
+        'Access-Control-Allow-Origin': '*',  # Allow requests from any origin
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
+    }
+            
     try:
         if not category:
             raise ValueError('Category is missing.')
@@ -148,17 +152,18 @@ def lambda_handler(event, context):
             if not location or not square_feet or not bedrooms or not bathrooms:
                 raise ValueError('Location, square feet, bedrooms, and/or bathrooms is missing.')
             result = home_price_predictor(location, square_feet, bedrooms, bathrooms)
+            
         else:
             raise ValueError('Invalid category.')
-
+ 
         return {
             'statusCode': 200,
+            'headers': headers,
             'body': json.dumps({'result': result})
         }
     except ValueError as e:
         return {
             'statusCode': 400,
+            'headers': headers,
             'body': json.dumps({'error': str(e)})
         }
-
-

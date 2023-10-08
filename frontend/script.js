@@ -62,11 +62,12 @@ function collectData(menuId) {
     parameters = `birthdate=${document.getElementById("dob").value}`;
   } else if (menuId === 6) {
     endpoint = "home_price_predictor";
-    parameters = `location=${
-      document.getElementById("location").value
-    }&square_feet=${document.getElementById("sqft").value}&bedrooms=${
-      document.getElementById("bedr").value
-    }&bathrooms=${document.getElementById("bath").value}`;
+    let x = encodeURIComponent(document.getElementById("location").value);
+    parameters = `location=${x}&square_feet=${
+      document.getElementById("sqft").value
+    }&bedrooms=${document.getElementById("bedr").value}&bathrooms=${
+      document.getElementById("bath").value
+    }`;
   }
 
   let apiUrl = baseUrl + endpoint + "&" + parameters;
@@ -82,8 +83,35 @@ function collectData(menuId) {
       throw new Error("Network response was not ok.");
     })
     .then((data) => {
-      // Handle the JSON data
-      console.log("Data from API:", data);
+      let resultElement;
+      let message = "";
+
+      if (menuId == 1) {
+        resultElement = document.getElementById("resultCalc");
+        message = `Result: ${data.result}`;
+      } else if (menuId == 2) {
+        resultElement = document.getElementById("resulttemp");
+        message = `Converted Temperature: ${data.result}°C`;
+      } else if (menuId == 3) {
+        resultElement = document.getElementById("result2point");
+        message = `Equation of Line: ${data.result.equation}\nManhattan Distance: ${data.result.manhattanDistance}\nEuclidean Distance: ${data.result.euclideanDistance}`;
+      } else if (menuId == 4) {
+        resultElement = document.getElementById("resulBmi");
+        message = `BMI Index: ${data.result.bmiIndex}\nStatus: ${data.result.status}`;
+      } else if (menuId == 5) {
+        resultElement = document.getElementById("resultDob");
+        message = `Age: ${data.result.age}\nBirth Day of Week: ${data.result.birthDayOfWeek}`;
+      } else if (menuId == 6) {
+        resultElement = document.getElementById("resultPred");
+        message = `Predicted House Price: $${data.result}`;
+      } else {
+        // Handle unknown menuId
+        resultElement = document.getElementById("resultUnknown");
+        message = `Invalid operation category.`;
+      }
+
+      // Set result and message in the specified element
+      resultElement.innerText = message;
     })
     .catch((error) => {
       // Handle errors
