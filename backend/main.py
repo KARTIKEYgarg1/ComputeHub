@@ -90,7 +90,6 @@ def predict_price(square_feet, bedrooms, bathrooms, location):
     predicted_price = sum(weighted_values) + 547035.8941609525
     return int(predicted_price)
 
-
 def home_price_predictor(location, square_feet, bedrooms, bathrooms):
     predicted_price = predict_price(square_feet, bedrooms, bathrooms, location)
     if predicted_price is not None:
@@ -167,3 +166,4 @@ def lambda_handler(event, context):
             'headers': headers,
             'body': json.dumps({'error': str(e)})
         }
+

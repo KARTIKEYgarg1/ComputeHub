@@ -1,82 +1,136 @@
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
 }
-body{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  place-items: center;
+  flex-direction: column;
+  background-color: rgba(128, 128, 128, 0.12);
 }
 .central {
-    width: 60%;
-    height: 60%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
-    gap: 1rem;
-    background-color: rgb(252, 208, 208);
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  text-align: center;
+  padding: 3%;
+  width: 80%;
+  background: white;
+  position: relative;
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.grid {
+  margin-top: 5%;
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
 }
 .b2 {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: large;
-    padding-left: 600px;
-    margin-top: 10px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: large;
+  padding-left: 600px;
+  margin-top: 10px;
 }
 
 .b1 {
-
-    border: 1px solid black;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    margin: 5px;
-    height: 200px;
-    overflow: hidden;
-    position: relative;
-    transition: 1s;
+  border: 1px solid black;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  margin: 5px;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  transition: all 1s;
 }
 .b1:hover {
-    cursor: pointer;
-    background-color: gray;
-    color: rgb(253, 238, 104);
+  cursor: pointer;
+  color: rgb(253, 238, 104);
 }
 
 .b1:hover span {
-    opacity: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.b1:hover img{
-   opacity: 0;
+.b1:hover img {
+  position: relative;
+  top: -100%;
 }
 
-.b1 img{
-    opacity: 1;
+.b1 img {
   width: 100%;
   height: 100%;
   border-radius: 50px;
+  top: 0%;
+  transition: all 1s;
 }
-.b1 span{
-    opacity: 0;
-    font-size: xx-large;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+.b1 span {
+  font-size: xx-large;
+  position: absolute;
+  top: 150%;
+  transition: all 1s;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-label,input , select{
-    width: 50%;
-    font-size: larger;
-    padding: 2px ;
+.submit-btn {
+  padding: 20px;
+  background-color: green;
+  cursor: pointer;
+  color: white;
+  max-width: 200px;
 }
-.submit-btn{
-    padding: 20px;
-    background-color:green;
-    color: white;
+.backButton {
+  position: absolute;
+  top: -5%;
+  left: 0;
+  border: 0;
+  padding: 10px;
+  background: transparent;
+  font-size: 50px;
+  cursor: pointer;
+  width: 50px;
+  height: 60px;
+}
+
+.grid-container div {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 5px;
+  vertical-align: middle;
+}
+
+/* Style for grid items (optional) */
+.grid-container div {
+  margin-bottom: 10px;
+}
+
+/* Additional styling for labels (optional) */
+label {
+  padding: 15px;
+  font-weight: bold;
+}
+input {
+  padding: 15px;
+  border: 0px;
+}
+
+input:focus {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid green;
+}
+.result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
 }

@@ -94,13 +94,13 @@ function collectData(menuId) {
         message = `Converted Temperature: ${data.result}°C`;
       } else if (menuId == 3) {
         resultElement = document.getElementById("result2point");
-        message = `Equation of Line: ${data.result.equation}\nManhattan Distance: ${data.result.manhattanDistance}\nEuclidean Distance: ${data.result.euclideanDistance}`;
+        message = `Equation of Line: ${data.result[0]}\nManhattan Distance: ${data.result[1]}\nEuclidean Distance: ${data.result[2]}`;
       } else if (menuId == 4) {
-        resultElement = document.getElementById("resulBmi");
-        message = `BMI Index: ${data.result.bmiIndex}\nStatus: ${data.result.status}`;
+        resultElement = document.getElementById("resultBmi");
+        message = `BMI Index: ${data.result[0]}\nStatus: ${data.result[1]}`;
       } else if (menuId == 5) {
         resultElement = document.getElementById("resultDob");
-        message = `Age: ${data.result.age}\nBirth Day of Week: ${data.result.birthDayOfWeek}`;
+        message = `Age: ${data.result[0]}\nBirth Day of Week: ${data.result[1]}`;
       } else if (menuId == 6) {
         resultElement = document.getElementById("resultPred");
         message = `Predicted House Price: $${data.result}`;
