@@ -1,0 +1,82 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.central {
+    width: 60%;
+    height: 60%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    gap: 1rem;
+    background-color: rgb(252, 208, 208);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.b2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: large;
+    padding-left: 600px;
+    margin-top: 10px;
+}
+
+.b1 {
+
+    border: 1px solid black;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    margin: 5px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    transition: 1s;
+}
+.b1:hover {
+    cursor: pointer;
+    background-color: gray;
+    color: rgb(253, 238, 104);
+}
+
+.b1:hover span {
+    opacity: 1;
+}
+
+.b1:hover img{
+   opacity: 0;
+}
+
+.b1 img{
+    opacity: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+}
+.b1 span{
+    opacity: 0;
+    font-size: xx-large;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+label,input , select{
+    width: 50%;
+    font-size: larger;
+    padding: 2px ;
+}
+.submit-btn{
+    padding: 20px;
+    background-color:green;
+    color: white;
+}
