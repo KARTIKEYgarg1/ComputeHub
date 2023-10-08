@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Interactive Calculator</title>
+    <meta
+      name="description"
+      content="Interactive Calculator for Various Operations"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <h1>Choose Your Operation</h1>
+    <div class="central" id="mainMenu">
+      <button class="b1" onclick="showMenu(1)">
+        <img src="i1.jpeg" /> <span>Calculator</span>
+      </button>
+      <button class="b1" onclick="showMenu(2)">
+        <img src="temp.jpeg" /> <span>Temperature Converter</span>
+      </button>
+      <button class="b1" onclick="showMenu(3)">
+        <img src="2point.jpeg" /> <span>2 Points</span>
+      </button>
+      <button class="b1" onclick="showMenu(4)">
+        <img src="bmi.jpeg" /> <span>B.M.I</span>
+      </button>
+      <button class="b1" onclick="showMenu(5)">
+        <img src="age.jpeg" /> <span>Age Calculator</span>
+      </button>
+      <button class="b1" onclick="showMenu(6)">
+        <img src="home.jpeg" /> <span>Home Price Predictor</span>
+      </button>
+    </div>
+
+    <!-- Calculator Menu -->
+    <div class="central personalizedMenu" id="calculator">
+      <button onclick="showMainMenu()">Back</button>
+      <div>
+        <label for="operationc">Select Operation</label><br />
+        <select id="operationc">
+          <option value="add">Add</option>
+          <option value="subtract">Subtract</option>
+          <option value="multiply">Multiply</option>
+          <option value="divide">Divide</option>
+          <option value="factorial">Factorial</option>
+          <option value="cube">Cube</option>
+          <option value="root">Root</option>
+        </select>
+      </div>
+      <div>
+        <label for="num1">Enter First Number</label><br />
+        <input type="number" placeholder="Enter number" id="num1" />
+      </div>
+      <div>
+        <label for="num2">Enter Second Number</label><br />
+        <input type="number" placeholder="Enter number" id="num2" />
+      </div>
+      <div>
+        <button class="submit-btn" onclick="collectData(1)">Calculate</button>
+      </div>
+    </div>
+
+    <!-- Temperature Converter Menu -->
+    <div class="central personalizedMenu" id="temperature">
+      <button onclick="showMainMenu()">Back</button>
+      <div>
+        <label for="temp">Enter Temperature</label><br />
+        <input type="number" placeholder="Enter temperature" id="temp" />
+      </div>
+      <div>
+        <label for="temperature">Select Unit</label><br />
+        <select id="temperatureUnit">
+          <option value="ftoD">Fahrenheit</option>
+          <option value="dtoF">Celsius</option>
+        </select>
+      </div>
+      <div>
+        <button class="submit-btn" onclick="collectData(2)">Convert</button>
+      </div>
+    </div>
+
+    <!-- 2 Points Menu -->
+    <div class="central personalizedMenu" id="2point">
+      <button onclick="showMainMenu()">Back</button>
+      <div>
+        <label for="x1">Enter x1 Coordinate</label><br />
+        <input type="number" placeholder="Enter x1" id="x1" />
+      </div>
+      <div>
+        <label for="y1">Enter y1 Coordinate</label><br />
+        <input type="number" placeholder="Enter y1" id="y1" />
+      </div>
+      <div>
+        <label for="x2">Enter x2 Coordinate</label><br />
+        <input type="number" placeholder="Enter x2" id="x2" />
+      </div>
+      <div>
+        <label for="y2">Enter y2 Coordinate</label><br />
+        <input type="number" placeholder="Enter y2" id="y2" />
+      </div>
+      <div>
+        <button class="submit-btn" onclick="collectData(3)">Calculate</button>
+      </div>
+    </div>
+
+    <!-- BMI Calculator Menu -->
+    <div class="central personalizedMenu" id="BMI">
+      <button onclick="showMainMenu()">Back</button>
+      <div>
+        <label for="age">Enter Age</label><br />
+        <input type="number" placeholder="Enter age" id="age" />
+      </div>
+      <div>
+        <label for="height">Enter Height (in cm)</label><br />
+        <input type="number" placeholder="Enter height" id="height" />
+      </div>
+      <div>
+        <label for="weight">Enter Weight (in kg)</label><br />
+        <input type="number" placeholder="Enter weight" id="weight" />
+      </div>
+      <div>
+        <button class="submit-btn" onclick="collectData(4)">Calculate</button>
+      </div>
+    </div>
+
+    <!-- Age Calculator Menu -->
+    <div class="central personalizedMenu" id="Age">
+      <button onclick="showMainMenu()">Back</button>
+      <div>
+        <label for="dob">Enter Date of Birth</label><br />
+        <input type="date" id="dob" />
+      </div>
+      <div>
+        <button class="submit-btn" onclick="collectData(5)">Calculate</button>
+      </div>
+    </div>
+
+    <!-- Home Price Predictor Menu -->
+    <div class="central personalizedMenu" id="Home">
+      <button onclick="showMainMenu()">Back</button>
+      <div>
+        <label for="location">Choose Location</label><br />
+        <select id="location">
+          <option value="New York">New York</option>
+          <option value="Los Angeles">Los Angeles</option>
+          <option value="Chicago">Chicago</option>
+          <option value="Houston">Houston</option>
+          <option value="Phoenix">Phoenix</option>
+          <option value="Philadelphia">Philadelphia</option>
+          <option value="San Antonio">San Antonio</option>
+          <option value="San Diego">San Diego</option>
+        </select>
+      </div>
+      <div>
+        <label for="sqft">Enter Square Feet</label><br />
+        <input type="number" placeholder="Enter square feet" id="sqft" />
+      </div>
+      <div>
+        <label for="bedr">Enter Bedroom Size</label><br />
+        <input type="number" placeholder="Enter bedroom size" id="bedr" />
+      </div>
+      <div>
+        <label for="bath">Enter Bathroom Size</label><br />
+        <input type="number" placeholder="Enter bathroom size" id="bath" />
+      </div>
+      <div>
+        <button class="submit-btn" onclick="collectData(6)">Calculate</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
