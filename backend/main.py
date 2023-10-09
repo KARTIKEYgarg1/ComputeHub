@@ -110,7 +110,7 @@ def lambda_handler(event, context):
             
     try:
         if not category:
-            raise ValueError('Category is missing.')
+            raise ValueError('Category is missing.||GROUP PROJECT- VCC-- SEM7- CE-1')
         
         if category == 'calculator':
             number1 = float(query_parameters.get('number1', 0))
